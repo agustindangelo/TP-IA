@@ -1,0 +1,75 @@
+% Base de datos - TP JugueBot
+
+%% juguete(descripcion, edad_min, edad_max, genero, tematica[], modalidad, precio).
+juguete(‘Libro para colorear de mascotas’, 0, 99, n, [‘lectura y escritura’, ‘naturaleza y animales’], i, 4950).
+juguete(‘Libro para colorear de Peppa Pig’, 0, 99, n, [‘lectura y escritura’],i,6690).
+juguete(‘Libro para colorear de StarWars’, 0, 99, n, [‘lectura y escritura’],i,5000).
+juguete(‘Libro para colorear de Disney’, 0, 99, n, [‘lectura y escritura’],i,3200).
+juguete('Pelota Futbol Futsal Munich', 3, 99, n, ['deportes', 'juegos al aire libre'], n, 13890).
+juguete('Pelota Rugby', 5, 99, n, ['deportes', 'juegos al aire libre'], n, 35000).
+juguete('Pelota Basquet', 5, 99, n, ['deportes', 'juegos al aire libre'], n, 23500).
+juguete('Paleta PingPong Sensei', 0, 99, n, ['deportes', 'juegos al aire libre'], g, 6390).
+juguete('Guitarra Criolla Clasica Midiplus', 8, 99, n, ['musica'], i, 35000).
+juguete('Flauta Dulce Yamaha', 8, 99, n, ['musica'], i, 7200).
+juguete('Tambor Criollo', 8, 99, n, ['musica'], i, 5000).
+juguete('Kit de ciencias', 6, 99, n, ['ciencia y experimentos'], n, 10000).
+juguete('Sistema Solar', 6, 99, n, ['ciencia y experimentos''], n, 8800).
+juguete('Sistema Solar Copernico', 6, 99, n, ['ciencia y experimentos'], n, 7400).
+juguete('Volvan y Excavación Jurasica', 6, 99, n, ['ciencia y experimentos'], n, 12600).
+juguete(‘Libro para colorear de Disney', 0, 99, n, ['cocina y comida'], i, 28840).
+juguete(‘Set Juego de Cocina Completa Duravit', 0, 99, f, ['cocina y comida'], i, 15797).
+juguete(‘Carrito de Dulces CakeShop Con Accesorios', 0, 99, f, ['cocina y comida'], i, 14749).
+juguete('Juliana Lavavajillas', 0, 99, f, ['cocina y comida'], i, 4722).
+juguete('Juego de Frutas Con Abrojo Para Cortar ', 0, 99, f, ['cocina y comida'], i, 7931).
+juguete('Comida de Juguete Pizza Y Hamburguesa ', 0, 99, n, ['cocina y comida'], i, 4100).
+juguete('Gran Explorador', 3, 99, n, ['naturaleza y animales'], i, 6431).
+juguete('Animales Salvajes imantados', 3, 99, n, ['naturaleza y animales'], i, 9925).
+juguete('Set de Muñecos de Animales', 3, 99, n, ['naturaleza y animales'], i, 4347).
+juguete('Juego Pop Up Didáctico Animales', 3, 99, n, ['naturaleza y animales'], i, 2799).
+juguete('Rompecabezas Animales', 5, 99, n, ['naturaleza y animales', ‘juegos de mesa’], i, 13899).
+juguete('Juego Matemático Animal', 5, 99, n, ['naturaleza y animales'	], i, 2460).
+juguete('Juego de la Granja Con Accesorios y Animales', 5, 99, n, ['naturaleza y animales'], i, 3000).
+juguete('Juego de la Memoria de Animales', 5, 99, n, ['naturaleza y animales'], i, 3590).
+juguete('Juego de cartas didácticas', 5, 99, n, ['naturaleza y animales', ‘juegos de mesa’], g, 5500).
+juguete('Juego de Encastre Madera de Animales ', 2, 99, n, ['naturaleza y animales'], i, 12960).
+juguete(‘Figura de acción Marvel Iron Spiderman’,6,99,m,[‘figura de accion’],i,18000). 
+juguete(‘Figura de acción Marvel Hulk’,6,99,m,[‘figura de accion’],i,8000). 
+juguete(‘Figura de acción DC Batman’,7,99,m,[‘figura de accion’],i,12500).
+juguete(‘bloques para construir de madera’,2,99,n,[‘construccion y diseño’],i,4500).
+juguete(‘bloques para construir 125 piezas Rasty’,4,99,n,[‘construccion y diseño’],i,4500).
+juguete(‘bloques para construir clasicos Lego’,4,99,n,[‘construccion y diseño’],i,71200).
+juguete(‘set para construir metalico Meknek’,2,99,n,[‘construccion y diseño’],i,3199).
+juguete(‘bloques de madera para construir’,2,99,n,[‘construccion y diseño’],i,4500).
+juguete(‘valija tatuajes Juliana’,5,99,n,[‘arte y manualidades’, ‘construccion y diseño’],i,8170).
+juguete(‘Tenisol Futbol tenis’, 0, 99, n, [‘juegos al aire libre’, ‘deportes’], g, 13500).
+juguete(‘Bravakids Hamaca Gemela’, 4, 11, n, [‘juegos al aire libre’],n, 41000).
+juguete(‘Strike 360 Strike 360’, 12, 99, n, [‘juegos al aire libre’],n, 30000).
+juguete(‘valija maquillaje artistico Juliana’,5,99,n,[‘arte y manualidades’, ‘construccion y diseño’],i,5990).
+juguete(‘Diente de leon Argentina en el mapamundi’,5,99,n,[‘rompecabezas’],n,9300).
+juguete(‘Crazy art Tetris’,5,99,n,[‘rompecabezas’],n,2600).
+juguete(‘Tapimovil Peppa Pig’,5,99,n,[‘rompecabezas’],n,2500).
+juguete(‘manta con dinosaurios para pintar’,2,99,n,[‘arte y manualidades’, ‘naturaleza y animales’],i,12500).
+juguete(‘valija tatuajes Juliana’,5,99,n,[‘arte y manualidades’, ‘construccion y diseño’],i,8170).
+juguete(‘papel magico A3 multicolor’,5,99,n,[‘arte y manualidades’],i,1928).
+juguete(‘juego pintando con acuarelas’,4,99,n,[‘arte y manualidades’],i,10400).
+juguete(‘fabrica de balas perfumadas’,99,f,[‘arte y manualidades’, ‘ciencia y experimentos’],i,8996).
+juguete(‘lapices color caja x24 figma’,10,99,n,[‘arte y manualidades’],i,1924).
+juguete(‘disfraz hombre araña con mascara’,4,99,m,[‘disfraces’],i,6323).
+juguete(‘disfraz ana y elsa frozen’,4,99,m,[‘disfraces’],i,4390).
+juguete(‘casco astronauta’,13,99,n,[‘disfraces’],i,18700).
+juguete('TEG La Revancha', 10, 99, n, ['juegos de mesa'], g, 25000).
+juguete('Simon Dice', 8, 99, n, ['juegos de mesa'], i, 20000).
+juguete('Monopoly', 8, 99, n, ['juegos de mesa'], g, 8900).
+juguete('Life', 8, 99, n, ['juegos de mesa'], g, 12000).
+juguete('Dime que soy yo', 12, 99, n, ['juegos de mesa'], g, 8000).
+juguete('Carrera de mente', 10, 99, n, ['juegos de mesa'], g, 17000).
+juguete('Pistola de agua Nerf Soaker', 8, 99, n, ['juegos de agua', 'juego al aire libre'], i, 6000).
+juguete('Pileta inflable Bestway', 3, 8, n, ['juegos de agua', 'juegos al aire libre'], n, 12500).
+juguete('Equipo de buceo Bestway', 10, 15, n, ['juegos de agua', 'juegos al aire libre'], i, 10000).
+juguete('Colchoneta inflable Bestway', 3, 99, n, ['juegos de agua', 'juegos al aire libre'], i, 8000).
+juguete('Autito HotWheels', 3, 99, m, ['coleccionismo'], i, 4500).
+juguete('Cartas coleccionables Dragon Ball', 10, 30, m, ['coleccionismo', 'juegos de mesa'], i, 2500).
+juguete('Figura de accion Marvel Hulk', 4, 30, m, ['coleccionismo', 'figuras de accion'], i, 18000).
+juguete('Figura de accion Marvel Spider Man', 4, 30, m, ['coleccionismo', 'figuras de accion'], i, 15000).
+juguete('Figura PinyPon con Vehiculo', 3, 16, f, ['coleccionismo'], i, 15000).
+juguete('Figura PinyPon dobles', 3, 16, f, ['coleccionismo'], i, 10000).
