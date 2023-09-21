@@ -1,7 +1,7 @@
-:- dynamic juguete/8.
+:- dynamic juguete/7.
 
 abrir_db :-
-  retractall(juguete(_,_,_,_,_,_)),
+  retractall(juguete(_,_,_,_,_)),
   consult('./Base/DatosBackup.txt').
   
 menu:-
@@ -41,8 +41,7 @@ seleccionar(1) :-
   write('\nIngrese el genero de la persona: '), read(Genero),
   write('\nIngrese el precio maximo del juguete: '), 
   read(PrecioMax),
-  write('\nIngrese la modalidad de juego (individual/grupal): '), read(Modalidad),
-  buscarJuguetes(Edad, Genero, Tematicas, Modalidad, PrecioMax, JugPosibles),
+  buscarJuguetes(Edad, Genero, Tematicas, PrecioMax, JugPosibles),
   mostrarJuguetes(JugPosibles).
 
 seleccionar(2) :-
@@ -72,13 +71,13 @@ mostrarJuguetes([JugueteID | RestoIDs]):-
 mostrarJuguetes([]):- abrir_db.
 
 buscarJuguetes(_, _, [], _, _, []).
-buscarJuguetes(Edad, Genero, CatInteres, Modalidad, Pmax, [JugueteID | Resto]):-
-  retract(juguete(JugueteID, _, EdadMin, EdadMax, Genero, Categorias, Modalidad, Precio)),
+buscarJuguetes(Edad, Genero, CatInteres, Pmax, [JugueteID | Resto]):-
+  retract(juguete(JugueteID, _, EdadMin, EdadMax, Genero, Categorias, Precio)),
   categoriasCoinciden(Categorias, CatInteres),
   EdadMin =< Edad,
   EdadMax >= Edad,
   Pmax >= Precio,
-  buscarJuguetes(Edad, Genero, CatInteres, Modalidad, Pmax, Resto).
+  buscarJuguetes(Edad, Genero, CatInteres, Pmax, Resto).
 buscarJuguetes(_, _, _, _, _, []):- abrir_db.
 
 categoriasCoinciden([Cat | _], CatInteres):-
@@ -93,10 +92,10 @@ pertenece(X, [_ | Resto]):- pertenece(X, Resto).
 % buscar_por_tematica
 
 % buscar_por_tematica(TematicasElegidas):-
-%     retract(juguete(Descripcion, EdadMin, EdadMax, Genero, Tematicas, Modalidad, Precio)),
+%     retract(juguete(Descripcion, EdadMin, EdadMax, Genero, Tematicas, Precio)),
 %     pertenece(Tematicas, TematicasElegidas)
 
-% listar_juguetes(EdadMin, EdadMax, Tematica, Modalidad, Lista):-
+% listar_juguetes(EdadMin, EdadMax, Tematica, Lista):-
 % listar_juguetes(_,_,_,_,[]).
-% %Lista is [Descripcion|Lista2], listar_juguetes(EdadMin, EdadMax, Tematica, Modalidad, Lista2).
+% %Lista is [Descripcion|Lista2], listar_juguetes(EdadMin, EdadMax, Tematica, Lista2).
 % % listar_juguetes(_,_,_,_,[]).

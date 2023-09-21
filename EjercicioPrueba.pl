@@ -1,8 +1,8 @@
-:- dynamic(juguete/7).
+:- dynamic(juguete/8).
 
 abrir_db:-
-    retractall(juguete(_,_)),
-    consult('Base/DatosBackup.txt').
+    retractall(juguete(_,_,_,_,_,_,_,_)),
+    consult('C:/Users/HP02/Documents/Repositorios/TP-IA/Base/DatosBackup.txt').
     
 leerCategorias([H|T]):- write('\nIngrese una categoria: '), read(H), H \= [], leerCategorias(T).
 leerCategorias([]).
@@ -15,7 +15,7 @@ inicio:-
 
 buscarJuguetes([], []).
 buscarJuguetes(CatInteres, [Juguete | Resto]):-
-    retract(juguete(Juguete, _, _, _, Categorias, _, _)),
+    retract(juguete(_, Juguete, _, _, _, Categorias, _, _)),
     categoriasCoinciden(Categorias, CatInteres),
     buscarJuguetes(CatInteres, Resto).
 buscarJuguetes(_, []).
