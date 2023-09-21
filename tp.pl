@@ -5,9 +5,21 @@ abrir_db :-
   consult('./Base/Datos.txt').
   
 menu:-
-  writeln('1. Asesorar a un nuevo cliente'),
-  writeln('2. Buscar juguetes por temáticas'),
-  writeln('x. Salir'),
+  writeln('       _                        ____        _   '),
+  writeln('      | |                      |  _ \\      | |  '),
+  writeln('      | |_   _  __ _ _   _  ___| |_) | ___ | |_ '),
+  writeln('  _   | | | | |/ _` | | | |/ _ \\  _ < / _ \\| __|'),
+  writeln(' | |__| | |_| | (_| | |_| |  __/ |_) | (_) | |_ '),
+  writeln('  \\____/ \\__,_|\\__, |\\__,_|\\___|____/ \\___/ \\__|'),
+  writeln('                __/ |                           '),
+  writeln('               |___/   Tu asistente de ventas   '),
+  writeln(''),
+  writeln(' ---- Elija una opcion --------------------'),
+  writeln('| 1. Asesorar a un nuevo cliente           |'),
+  writeln('| 2. Buscar juguetes por tematicas         |'),
+  writeln('| 3. Buscar juguetes por palabra clave     |'),
+  writeln('| x. Salir                                 |'),
+  writeln(' ------------------------------------------'),
   read(Opt),
   Opt \= x,
   abrir_db,
@@ -15,7 +27,12 @@ menu:-
   menu.
 menu.
 
-leer([H|T]) :- write('\nIngrese una tematica (doble corchete para finalizar el ingreso): '), read(H), H \= [], leer(T).
+leer([TematicaMinus|T]) :- 
+  write('\nIngrese una tematica (doble corchete para finalizar el ingreso): '), 
+  read(Tematica),
+  Tematica \= [], 
+  string_lower(Tematica, TematicaMinus),
+  leer(T).
 leer([]).
 
 seleccionar(1) :- 
@@ -38,10 +55,9 @@ seleccionar(1) :-
   writeln('\t- Juegos de mesa'),
   writeln('\t- Coleccionismo'),
   leer(Tematicas),
-  write('\nIngrese el genero de la persona: '), read(Genero),
-  write('\nIngrese el precio maximo del juguete: '), 
-  read(PrecioMax),
-  buscarJuguetes(Edad, Genero, Tematicas, PrecioMax, JugPosibles),
+  write('\nIngrese el genero de la persona: '), read(Genero), string_lower(Genero, GeneroMinus),
+  write('\nIngrese el precio maximo del juguete: '), read(PrecioMax),
+  buscarJuguetes(Edad, GeneroMinus, Tematicas, PrecioMax, JugPosibles),
   mostrarJuguetes(JugPosibles).
 
 seleccionar(2) :-
@@ -60,42 +76,57 @@ seleccionar(2) :-
   writeln('\t- Rompecabezas'),
   writeln('\t- Juegos de mesa'),
   writeln('\t- Juegos de agua'),
-  writeln('\t- Coleccionismo').
-  %leer(Tematicas).
+  writeln('\t- Coleccionismo'),
+  leer(Tematicas),
+  buscarPorTematicas(Tematicas, JugPosibles),
+  mostrarJuguetes(JugPosibles).
+
+seleccionar(3) :-
+  write('Ingrese el nombre del juguete o su marca: '),
+  read(Palabra), string_lower(Palabra, PalabraMinus),
+  buscarPorPalabra(PalabraMinus, JugPosibles),
+  mostrarJuguetes(JugPosibles).
 
 mostrarJuguetes([JugueteID | RestoIDs]):-
+  abrir_db,
   retract(juguete(JugueteID, Descripcion, _, _, _, Categorias, Precio)),
   write(JugueteID), write(' - '), write(Descripcion), write(' $'), write(Precio), write(' - Categorias: '), write(Categorias),
   writeln(''),
   mostrarJuguetes(RestoIDs).
-mostrarJuguetes([]):- abrir_db.
+mostrarJuguetes([]).
 
 buscarJuguetes(_, _, [], _, []).
 buscarJuguetes(Edad, Genero, CatInteres, Pmax, [JugueteID | Resto]):-
-  retract(juguete(JugueteID, _, EdadMin, EdadMax, Genero, Categorias, Precio)),
+  retract(juguete(JugueteID, _, EdadMin, EdadMax, GeneroJuguete, Categorias, Precio)),
   categoriasCoinciden(Categorias, CatInteres),
+  evaluarGeneroJuguete(Genero, GeneroJuguete),
   EdadMin =< Edad,
   EdadMax >= Edad,
   Pmax >= Precio,
   buscarJuguetes(Edad, Genero, CatInteres, Pmax, Resto).
-buscarJuguetes(_, _, _, _, []):- abrir_db.
+buscarJuguetes(_, _, _, _, []).
+
+buscarPorPalabra(Palabra, [JugueteID | Resto]) :-
+  retract(juguete(JugueteID, Descripcion, _, _, _, _, _)),
+  string_lower(Descripcion, DescripcionMinus),
+  sub_atom(DescripcionMinus, _, _, _, Palabra),
+  buscarPorPalabra(Palabra, Resto).
+buscarPorPalabra(_, []).
+
+buscarPorTematicas(Tematicas, [JugueteID | Resto]) :-
+  retract(juguete(JugueteID, _, _, _, _, Categorias, _)),
+  categoriasCoinciden(Categorias, Tematicas),
+  buscarPorTematicas(Tematicas, Resto).
+buscarPorTematicas(_, []).
 
 categoriasCoinciden([Cat | _], CatInteres):-
-  pertenece(Cat, CatInteres).
+  string_lower(Cat, CatMinus),
+  pertenece(CatMinus, CatInteres).
 categoriasCoinciden([_ | Resto], CatInteres):-
   categoriasCoinciden(Resto, CatInteres).
 
 pertenece(X, [X | _]).
 pertenece(X, [_ | Resto]):- pertenece(X, Resto).
 
-
-% buscar_por_tematica
-
-% buscar_por_tematica(TematicasElegidas):-
-%     retract(juguete(Descripcion, EdadMin, EdadMax, Genero, Tematicas, Precio)),
-%     pertenece(Tematicas, TematicasElegidas)
-
-% listar_juguetes(EdadMin, EdadMax, Tematica, Lista):-
-% listar_juguetes(_,_,_,_,[]).
-% %Lista is [Descripcion|Lista2], listar_juguetes(EdadMin, EdadMax, Tematica, Lista2).
-% % listar_juguetes(_,_,_,_,[]).
+evaluarGeneroJuguete(Genero, Genero).
+evaluarGeneroJuguete(_, n).
