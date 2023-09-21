@@ -21,12 +21,12 @@ buscarJuguetes(CatInteres, [Juguete | Resto]):-
 buscarJuguetes(_, []).
 
 categoriasCoinciden([Cat | _], CatInteres):-
-    estaEnLaLista(Cat, CatInteres).
+    pertenece(Cat, CatInteres).
 categoriasCoinciden([_ | Resto], CatInteres):-
     categoriasCoinciden(Resto, CatInteres).
 
-estaEnLaLista(X, [X | _]).
-estaEnLaLista(X, [_ | Resto]):- estaEnLaLista(X, Resto).
+pertenece(X, [X | _]).
+pertenece(X, [_ | Resto]):- pertenece(X, Resto).
 
 
 
