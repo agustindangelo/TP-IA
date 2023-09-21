@@ -1,8 +1,8 @@
 :- dynamic juguete/7.
 
 abrir_db :-
-  retractall(juguete(_,_,_,_,_)),
-  consult('./Base/DatosBackup.txt').
+  retractall(juguete(_,_,_,_,_,_,_)),
+  consult('./Base/Datos.txt').
   
 menu:-
   writeln('1. Asesorar a un nuevo cliente'),
@@ -64,13 +64,13 @@ seleccionar(2) :-
   %leer(Tematicas).
 
 mostrarJuguetes([JugueteID | RestoIDs]):-
-  retract(juguete(JugueteID, Descripcion, _, _, _, Categorias, _, Precio)),
+  retract(juguete(JugueteID, Descripcion, _, _, _, Categorias, Precio)),
   write(JugueteID), write(' - '), write(Descripcion), write(' $'), write(Precio), write(' - Categorias: '), write(Categorias),
   writeln(''),
   mostrarJuguetes(RestoIDs).
 mostrarJuguetes([]):- abrir_db.
 
-buscarJuguetes(_, _, [], _, _, []).
+buscarJuguetes(_, _, [], _, []).
 buscarJuguetes(Edad, Genero, CatInteres, Pmax, [JugueteID | Resto]):-
   retract(juguete(JugueteID, _, EdadMin, EdadMax, Genero, Categorias, Precio)),
   categoriasCoinciden(Categorias, CatInteres),
@@ -78,7 +78,7 @@ buscarJuguetes(Edad, Genero, CatInteres, Pmax, [JugueteID | Resto]):-
   EdadMax >= Edad,
   Pmax >= Precio,
   buscarJuguetes(Edad, Genero, CatInteres, Pmax, Resto).
-buscarJuguetes(_, _, _, _, _, []):- abrir_db.
+buscarJuguetes(_, _, _, _, []):- abrir_db.
 
 categoriasCoinciden([Cat | _], CatInteres):-
   pertenece(Cat, CatInteres).
