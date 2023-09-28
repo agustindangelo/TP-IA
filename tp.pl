@@ -2,9 +2,12 @@
 
 abrir_db:-
   retractall(juguete(_,_,_,_,_,_,_)),
-  consult('./Base/Datos.txt').
+  consult('C:/Users/adangelo/code/TP-IA/Base/Datos.txt').
   
+cls :- write('\e[H\e[2J').
+
 menu:-
+  cls,
   writeln('       _                        ____        _   '),
   writeln('      | |                      |  _ \\      | |  '),
   writeln('      | |_   _  __ _ _   _  ___| |_) | ___ | |_ '),
@@ -28,7 +31,7 @@ menu:-
 menu.
 
 leer([TematicaMinus|T]):- 
-  write('\nIngrese una tematica (doble corchete para finalizar el ingreso): '), 
+  write('\n¿Ingrese una tematica (doble corchete para finalizar el ingreso): '), 
   read(Tematica),
   Tematica \= [], 
   string_lower(Tematica, TematicaMinus),
@@ -36,7 +39,7 @@ leer([TematicaMinus|T]):-
 leer([]).
 
 imprimirTematicas:-
-  writeln('\t- Musica'),
+  writeln('\n\t- Musica'),
   writeln('\t- Deportes'),
   writeln('\t- Construccion y diseno'),
   writeln('\t- Ciencia y experimentos'),
@@ -54,24 +57,24 @@ imprimirTematicas:-
 
 seleccionar(1):- 
   write('ASESORAMIENTO PARA UN NUEVO CLIENTE: '),
-  write('\nIngrese la edad de la persona: '), read(Edad),
-  write('\nIngrese una tematica de interes de las siguientes: '),
+  write('\n¿Cuantos anios tiene la persona?: '), read(Edad),
+  write('\n¿Cuales son sus intereses: '),
   imprimirTematicas,
   leer(Tematicas),
-  write('\nIngrese el genero de la persona: '), read(Genero), string_lower(Genero, GeneroMinus),
-  write('\nIngrese el precio maximo del juguete: '), read(PrecioMax),
+  write('\n¿Cual es su genero? '), read(Genero), string_lower(Genero, GeneroMinus),
+  write('\n¿Cual es el precio maximo que esta dispuesto a pagar? '), read(PrecioMax),
   buscarJuguetes(Edad, GeneroMinus, Tematicas, PrecioMax, JugPosibles),
   mostrarJuguetes(JugPosibles).
 
 seleccionar(2):-
-	writeln('Ingrese una tematica de interes de las siguientes: '),
+	writeln('¿Cual es una tematica de interes de las siguientes?: '),
   imprimirTematicas,
   leer(Tematicas),
   buscarPorTematicas(Tematicas, JugPosibles),
   mostrarJuguetes(JugPosibles).
 
 seleccionar(3):-
-  write('Ingrese el nombre del juguete o su marca: '),
+  write('¿Cual es el nombre del juguete o su marca?: '),
   read(Palabra), string_lower(Palabra, PalabraMinus),
   buscarPorPalabra(PalabraMinus, JugPosibles),
   mostrarJuguetes(JugPosibles).
@@ -79,10 +82,10 @@ seleccionar(3):-
 mostrarJuguetes([JugueteID | RestoIDs]):-
   abrir_db,
   retract(juguete(JugueteID, Descripcion, _, _, _, Tematicas, Precio)),
-  write(JugueteID), write(' - '), write(Descripcion), write(' $'), write(Precio), write(' - Tematicas: '), write(Tematicas),
+  write('\t -->'), write(JugueteID), write(' - '), write(Descripcion), write(' $'), write(Precio), write(' - Tematicas: '), write(Tematicas),
   writeln(''),
   mostrarJuguetes(RestoIDs).
-mostrarJuguetes([]):- write('Ingrese cualquier entrada para volver al menu: '), read(_).
+mostrarJuguetes([]):- write('\n\n Ingrese x para volver al menu: '), read(_).
 
 buscarJuguetes(Edad, Genero, TematicasInteres, Pmax, [JugueteID | Resto]):-
   retract(juguete(JugueteID, _, EdadMin, EdadMax, GeneroJuguete, Tematicas, Precio)),
