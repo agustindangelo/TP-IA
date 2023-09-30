@@ -1,75 +1,94 @@
 % Base de datos - TP JugueBot
 
+%% tematica(id, descripcion, articulo).
+tematica(1, 'deportes', 'los ').
+tematica(2, 'musica', 'la ').
+tematica(3, 'ciencia y experimentos', 'la').
+tematica(4, 'construccion y disenio', 'la').
+tematica(5, 'arte y manualidades', 'el').
+tematica(6, 'disfraces', 'los').
+tematica(7, 'lectura y escritura', 'la').
+tematica(8, 'cocina y comida', 'la').
+tematica(9, 'naturaleza y animales', 'la').
+tematica(10, 'figuras de accion', 'las').
+tematica(11, 'juegos al aire libre', 'los').
+tematica(12, 'rompecabezas', 'los').
+tematica(13, 'juegos de mesa', 'los').
+tematica(14, 'juegos de agua', 'los').
+tematica(15, 'coleccionismo', 'el').
+
+
+
 %% juguete(id, descripcion, edad_min, edad_max, genero, tematica[], precio).
-juguete(1, 'Libro para colorear de mascotas', 0, 99, n, ['lectura y escritura', 'naturaleza y animales'],  4950).
-juguete(2, 'Libro para colorear de Peppa Pig', 0, 99, n, ['lectura y escritura'],  6690).
-juguete(3, 'Libro para colorear de StarWars', 0, 99, n, ['lectura y escritura'],5000).
-juguete(4, 'Libro para colorear de Disney', 0, 99, n, ['lectura y escritura'],3200).
-juguete(5, 'Pelota Futbol Futsal Munich', 3, 99, n, ['deportes', 'juegos al aire libre'],  13890).
-juguete(6, 'Pelota Rugby', 5, 99, n, ['deportes', 'juegos al aire libre'],  35000).
-juguete(7, 'Pelota Basquet', 5, 99, n, ['deportes', 'juegos al aire libre'],  23500).
-juguete(8, 'Paleta PingPong Sensei', 0, 99, n, ['deportes', 'juegos al aire libre'],  6390).
-juguete(9, 'Guitarra Criolla Clasica Midiplus', 8, 99, n, ['musica'],  35000).
-juguete(10, 'Flauta Dulce Yamaha', 8, 99, n, ['musica'],  7200).
-juguete(11, 'Tambor Criollo', 8, 99, n, ['musica'],  5000).
-juguete(12, 'Kit de ciencias', 6, 99, n, ['ciencia y experimentos'],  10000).
-juguete(13, 'Sistema Solar', 6, 99, n, ['ciencia y experimentos'],  8800).
-juguete(14, 'Sistema Solar Copernico', 6, 99, n, ['ciencia y experimentos'],  7400).
-juguete(15, 'Volcan y Excavacion Jurasica', 6, 99, n, ['ciencia y experimentos'],  12600).
-juguete(16, 'Libro para colorear de Disney', 0, 99, n, ['cocina y comida'],  28840).
-juguete(17, 'Set Juego de Cocina Completa Duravit', 0, 99, f, ['cocina y comida'],  15797).
-juguete(18, 'Carrito de Dulces CakeShop Con Accesorios', 0, 99, f, ['cocina y comida'],  14749).
-juguete(19, 'Juliana Lavavajillas', 0, 99, f, ['cocina y comida'],  4722).
-juguete(20, 'Juego de Frutas Con Abrojo Para Cortar ', 0, 99, f, ['cocina y comida'],  7931).
-juguete(21, 'Comida de Juguete Pizza Y Hamburguesa ', 0, 99, n, ['cocina y comida'],  4100).
-juguete(22, 'Gran Explorador', 3, 99, n, ['naturaleza y animales'],  6431).
-juguete(23, 'Animales Salvajes imantados', 3, 99, n, ['naturaleza y animales'],  9925).
-juguete(24, 'Set de Muniecos de Animales', 3, 99, n, ['naturaleza y animales'],  4347).
-juguete(25, 'Juego Pop Up Didactico Animales', 3, 99, n, ['naturaleza y animales'],  2799).
-juguete(26, 'Rompecabezas Animales', 5, 99, n, ['naturaleza y animales', 'juegos de mesa'],  13899).
-juguete(27, 'Juego Matematico Animal', 5, 99, n, ['naturaleza y animales'	],  2460).
-juguete(28, 'Juego de la Granja Con Accesorios y Animales', 5, 99, n, ['naturaleza y animales'],  3000).
-juguete(29, 'Juego de la Memoria de Animales', 5, 99, n, ['naturaleza y animales'],  3590).
-juguete(30, 'Juego de cartas didacticas', 5, 99, n, ['naturaleza y animales', 'juegos de mesa'],  5500).
-juguete(31, 'Juego de Encastre Madera de Animales ', 2, 99, n, ['naturaleza y animales'],  12960).
-juguete(32, 'Figura de accion Marvel Iron Spiderman',6,99,m,['figura de accion'],18000). 
-juguete(33, 'Figura de accion Marvel Hulk',6,99,m,['figura de accion'],8000). 
-juguete(34, 'Figura de accion DC Batman',7,99,m,['figura de accion'],12500).
-juguete(35, 'Bloques para construir de madera',2,99,n,['construccion y disenio'],4500).
-juguete(36, 'Bloques para construir 125 piezas Rasty',4,99,n,['construccion y disenio'],4500).
-juguete(37, 'Bloques para construir clasicos Lego',4,99,n,['construccion y disenio'],71200).
-juguete(38, 'Set para construir metalico Meknek',2,99,n,['construccion y disenio'],3199).
-juguete(39, 'Bloques de madera para construir',2,99,n,['construccion y disenio'],4500).
-juguete(40, 'Valija tatuajes Juliana',5,99,n,['arte y manualidades', 'construccion y disenio'],8170).
-juguete(41, 'Tenisol Futbol tenis', 0, 99, n, ['juegos al aire libre', 'deportes'],  13500).
-juguete(42, 'Bravakids Hamaca Gemela', 4, 11, n, ['juegos al aire libre'], 41000).
-juguete(43, 'Strike 360 Strike 360', 12, 99, n, ['juegos al aire libre'], 30000).
-juguete(44, 'valija maquillaje artistico Juliana',5,99,n,['arte y manualidades', 'construccion y disenio'],5990).
-juguete(45, 'Diente de leon Argentina en el mapamundi',5,99,n,['rompecabezas'],9300).
-juguete(46, 'Crazy art Tetris',5,99,n,['rompecabezas'],2600).
-juguete(47, 'Tapimovil Peppa Pig',5,99,n,['rompecabezas'],2500).
-juguete(48, 'Manta con dinosaurios para pintar',2,99,n,['arte y manualidades', 'naturaleza y animales'],12500).
-juguete(49, 'Valija tatuajes Juliana',5,99,n,['arte y manualidades', 'construccion y disenio'],8170).
-juguete(50, 'Papel magico A3 multicolor',5,99,n,['arte y manualidades'],1928).
-juguete(51, 'Juego pintando con acuarelas',4,99,n,['arte y manualidades'],10400).
-juguete(52, 'Fabrica de velas perfumadas', 12, 99, f, ['arte y manualidades', 'ciencia y experimentos'],  8996).
-juguete(53, 'Lapices color caja x24 figma', 10, 99, n, ['arte y manualidades'],  1924).
-juguete(54, 'Disfraz hombre arania con mascara',4,99,m,['disfraces'],6323).
-juguete(55, 'Disfraz ana y elsa frozen',4,99,m,['disfraces'],4390).
-juguete(56, 'Casco astronauta',13,99,n,['disfraces'],18700).
-juguete(57, 'TEG La Revancha', 10, 99, n, ['juegos de mesa'],  25000).
-juguete(58, 'Simon Dice', 8, 99, n, ['juegos de mesa'],  20000).
-juguete(59, 'Monopoly', 8, 99, n, ['juegos de mesa'],  8900).
-juguete(60, 'Life', 8, 99, n, ['juegos de mesa'],  12000).
-juguete(61, 'Dime que soy yo', 12, 99, n, ['juegos de mesa'],  8000).
-juguete(62, 'Carrera de mente', 10, 99, n, ['juegos de mesa'],  17000).
-juguete(63, 'Pistola de agua Nerf Soaker', 8, 99, n, ['juegos de agua', 'juego al aire libre'],  6000).
-juguete(64, 'Pileta inflable Bestway', 3, 8, n, ['juegos de agua', 'juegos al aire libre'],  12500).
-juguete(65, 'Equipo de buceo Bestway', 10, 15, n, ['juegos de agua', 'juegos al aire libre'],  10000).
-juguete(66, 'Colchoneta inflable Bestway', 3, 99, n, ['juegos de agua', 'juegos al aire libre'],  8000).
-juguete(67, 'Autito HotWheels', 3, 99, m, ['coleccionismo'],  4500).
-juguete(68, 'Cartas coleccionables Dragon Ball', 10, 30, m, ['coleccionismo', 'juegos de mesa'],  2500).
-juguete(69, 'Figura de accion Marvel Hulk', 4, 30, m, ['coleccionismo', 'figuras de accion'],  18000).
-juguete(70, 'Figura de accion Marvel Spider Man', 4, 30, m, ['coleccionismo', 'figuras de accion'],  15000).
-juguete(71, 'Figura PinyPon con Vehiculo', 3, 16, f, ['coleccionismo'],  15000).
-juguete(72, 'Figura PinyPon dobles', 3, 16, f, ['coleccionismo'],  10000).
+juguete(1, 'Libro para colorear de mascotas', 0, 99, n, [7, 9],  4950).
+juguete(2, 'Libro para colorear de Peppa Pig', 0, 99, n, [7],  6690).
+juguete(3, 'Libro para colorear de StarWars', 0, 99, n, [7],5000).
+juguete(4, 'Libro para colorear de Disney', 0, 99, n, [7],3200).
+juguete(5, 'Pelota Futbol Futsal Munich', 3, 99, n, [1, 11],  13890).
+juguete(6, 'Pelota Rugby', 5, 99, n, [1, 11],  35000).
+juguete(7, 'Pelota Basquet', 5, 99, n, [1, 11],  23500).
+juguete(8, 'Paleta PingPong Sensei', 0, 99, n, [1, 11],  6390).
+juguete(9, 'Guitarra Criolla Clasica Midiplus', 8, 99, n, [2],  35000).
+juguete(10, 'Flauta Dulce Yamaha', 8, 99, n, [2],  7200).
+juguete(11, 'Tambor Criollo', 8, 99, n, [2],  5000).
+juguete(12, 'Kit de ciencias', 6, 99, n, [3],  10000).
+juguete(13, 'Sistema Solar', 6, 99, n, [3],  8800).
+juguete(14, 'Sistema Solar Copernico', 6, 99, n, [3],  7400).
+juguete(15, 'Volcan y Excavacion Jurasica', 6, 99, n, [3],  12600).
+juguete(16, 'Libro para colorear de Disney', 0, 99, n, [8],  28840).
+juguete(17, 'Set Juego de Cocina Completa Duravit', 0, 99, f, [8],  15797).
+juguete(18, 'Carrito de Dulces CakeShop Con Accesorios', 0, 99, f, [8],  14749).
+juguete(19, 'Juliana Lavavajillas', 0, 99, f, [8],  4722).
+juguete(20, 'Juego de Frutas Con Abrojo Para Cortar ', 0, 99, f, [8],  7931).
+juguete(21, 'Comida de Juguete Pizza Y Hamburguesa ', 0, 99, n, [8],  4100).
+juguete(22, 'Gran Explorador', 3, 99, n, [9],  6431).
+juguete(23, 'Animales Salvajes imantados', 3, 99, n, [9],  9925).
+juguete(24, 'Set de Muniecos de Animales', 3, 99, n, [9],  4347).
+juguete(25, 'Juego Pop Up Didactico Animales', 3, 99, n, [9],  2799).
+juguete(26, 'Rompecabezas Animales', 5, 99, n, [9, 'juegos de mesa'],  13899).
+juguete(27, 'Juego Matematico Animal', 5, 99, n, [9	],  2460).
+juguete(28, 'Juego de la Granja Con Accesorios y Animales', 5, 99, n, [9],  3000).
+juguete(29, 'Juego de la Memoria de Animales', 5, 99, n, [9],  3590).
+juguete(30, 'Juego de cartas didacticas', 5, 99, n, [9, 'juegos de mesa'],  5500).
+juguete(31, 'Juego de Encastre Madera de Animales ', 2, 99, n, [9],  12960).
+juguete(32, 'Figura de accion Marvel Iron Spiderman',6,99,m,[10],18000). 
+juguete(33, 'Figura de accion Marvel Hulk',6,99,m,[10],8000). 
+juguete(34, 'Figura de accion DC Batman',7,99,m,[10],12500).
+juguete(35, 'Bloques para construir de madera',2,99,n,[4],4500).
+juguete(36, 'Bloques para construir 125 piezas Rasty',4,99,n,[4],4500).
+juguete(37, 'Bloques para construir clasicos Lego',4,99,n,[4],71200).
+juguete(38, 'Set para construir metalico Meknek',2,99,n,[4],3199).
+juguete(39, 'Bloques de madera para construir',2,99,n,[4],4500).
+juguete(40, 'Valija tatuajes Juliana',5,99,n,[5, 4],8170).
+juguete(41, 'Tenisol Futbol tenis', 0, 99, n, [11, 1],  13500).
+juguete(42, 'Bravakids Hamaca Gemela', 4, 11, n, [11], 41000).
+juguete(43, 'Strike 360 Strike 360', 12, 99, n, [11], 30000).
+juguete(44, 'valija maquillaje artistico Juliana',5,99,n,[5, 4],5990).
+juguete(45, 'Diente de leon Argentina en el mapamundi',5,99,n,[12],9300).
+juguete(46, 'Crazy art Tetris',5,99,n,[12],2600).
+juguete(47, 'Tapimovil Peppa Pig',5,99,n,[12],2500).
+juguete(48, 'Manta con dinosaurios para pintar',2,99,n,[5, 9],12500).
+juguete(49, 'Valija tatuajes Juliana',5,99,n,[5, 4],8170).
+juguete(50, 'Papel magico A3 multicolor',5,99,n,[5],1928).
+juguete(51, 'Juego pintando con acuarelas',4,99,n,[5],10400).
+juguete(52, 'Fabrica de velas perfumadas', 12, 99, f, [5, 3],  8996).
+juguete(53, 'Lapices color caja x24 figma', 10, 99, n, [5],  1924).
+juguete(54, 'Disfraz hombre arania con mascara',4,99,m,[6],6323).
+juguete(55, 'Disfraz ana y elsa frozen',4,99,m,[6],4390).
+juguete(56, 'Casco astronauta',13,99,n,[6],18700).
+juguete(57, 'TEG La Revancha', 10, 99, n, [13],  25000).
+juguete(58, 'Simon Dice', 8, 99, n, [13],  20000).
+juguete(59, 'Monopoly', 8, 99, n, [13],  8900).
+juguete(60, 'Life', 8, 99, n, [13],  12000).
+juguete(61, 'Dime que soy yo', 12, 99, n, [13],  8000).
+juguete(62, 'Carrera de mente', 10, 99, n, [13],  17000).
+juguete(63, 'Pistola de agua Nerf Soaker', 8, 99, n, [14, 11],  6000).
+juguete(64, 'Pileta inflable Bestway', 3, 8, n, [14, 11],  12500).
+juguete(65, 'Equipo de buceo Bestway', 10, 15, n, [14, 11],  10000).
+juguete(66, 'Colchoneta inflable Bestway', 3, 99, n, [14, 11],  8000).
+juguete(67, 'Autito HotWheels', 3, 99, m, [15],  4500).
+juguete(68, 'Cartas coleccionables Dragon Ball', 10, 30, m, [15, 13],  2500).
+juguete(69, 'Figura de accion Marvel Hulk', 4, 30, m, [15, 10],  18000).
+juguete(70, 'Figura de accion Marvel Spider Man', 4, 30, m, [15, 10],  15000).
+juguete(71, 'Figura PinyPon con Vehiculo', 3, 16, f, [15],  15000).
+juguete(72, 'Figura PinyPon dobles', 3, 16, f, [15],  10000).
