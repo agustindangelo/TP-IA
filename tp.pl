@@ -8,14 +8,14 @@ abrir_db:-
 menu:-
   mostrarLogo,
   writeln('Hola, espero que andes muy bien. Soy JugueBot, tu asesor de compras.'),
-  sleep(2),
+  sleep(1),
   mostrarOpciones,
   read(Opt),
   Opt \= x,
   abrir_db,
   seleccionar(Opt),
-  writeln('Espero a ver sido de ayuda :D !!'),
-  sleep(2),
+  writeln('Espero haber sido de ayuda :D !!'),
+  sleep(1),
   menu.
 menu.
 
