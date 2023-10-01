@@ -31,7 +31,7 @@ mostrarLogo:-
   writeln('').
 mostrarOpciones:-
   writeln(' ---- En que puedo ayudarte hoy? --------------------'),
-  writeln('| 1. Ver juguetes para un regalo                     |'),
+  writeln('| 1. Recibir asesoramiento para regalar              |'),
   writeln('| 2. Describir un juguete                            |'),
   writeln('| x. Salir                                           |'),
   writeln(' ----------------------------------------------------').
@@ -51,6 +51,7 @@ seleccionar(2):-
   limpiarConectores(DescripcionSeparada, PalabrasClave),
   buscarPorPalabra(PalabrasClave, JugPosibles),
   writeln('Mmm... Se me ocurren estas opciones:'),
+  writeln(''),
   mostrarJuguetes(JugPosibles).
 
 
@@ -156,7 +157,8 @@ seleccionar(2):-
     writeln(''),
     mostrarJuguetes(RestoIDs).
   mostrarJuguetes([]):-
-    writeln('--> Estas son todas las opciones que tengo por ahora D:'),
+    writeln(''),
+    writeln('--> Son todas las que tengo por ahora D:'),
     writeln(''),
     sleep(1),
     write('(Ingrese cualquier entrada para volver al menu)'), read(_).
