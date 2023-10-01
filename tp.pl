@@ -44,10 +44,13 @@ seleccionar(1):-
   writeln('Perfecto, me encanta esta opcion.'),
   sleep(1),
   writeln('Para ayudarte, tendre que hacerte algunas preguntas primero. No te preocupes, no son muchas...'),
+  consultarEdad(Edad),
+  consultarGenero(Genero),
+  consultarPrecioMax(PrecioMax),
   consultarTematicas(TematicasElegidas, 1),
   subtract(TematicasElegidas, [[]], TematicasFiltradas),
   writeln(TematicasFiltradas),
-  buscarJuguetes(_, _, TematicasFiltradas, _, JugPosibles),
+  buscarJuguetes(Edad, Genero, TematicasFiltradas, PrecioMax, JugPosibles),
   mostrarJuguetes(JugPosibles).
 seleccionar(2):-
   write('Perfecto, necesitare que me digas una breve descripcion del juguete que buscas'), read(Descripcion),
@@ -60,6 +63,42 @@ seleccionar(2):-
 
 
 %% ------- SECCION DE BUSQUEDA PRINCIPAL --------------------
+  %% Regla de consulta de edad validando que se ingrese un numero
+  consultarEdad(Edad):-
+    write('\t > Cuantos anios tiene la persona a la que deseas regalarle? '),
+    read(Edad),
+    writeln(''),
+    number(Edad).
+  consultarEdad(Edad):-
+    writeln('Lo siento, no pude entenderte. Asegurate de ingresar un numero...'),
+    sleep(1),
+    consultarEdad(Edad).
+
+  %% Regla que pregunta solicita el genero del agasajado. m => nene, f => nena
+  consultarGenero(Genero):-
+    write('\t > Es un nene (m) o una nena (f)? '),
+    read(Genero),
+    writeln(''),
+    validarGenero(Genero).
+  consultarGenero(Genero):-
+    writeln('Lo siento, no pude entenderte. Asegurate de ingresar "m" para nene, y "f" para nena...'),
+    consultarGenero(Genero).
+  
+  %% Regla que valida que el genero ingresado sea 'm' o 'f'
+  validarGenero(m).
+  validarGenero(f).
+
+  %% Regla que solicita el ingreso del precio maximo dispuesto a pagar validando que ingrese un numero
+  consultarPrecioMax(Precio):-
+    write('\t > Hasta que precio maximo esta dispuesto a pagar? $'),
+    read(Precio),
+    writeln(''),
+    number(Precio).
+  consultarPrecioMax(Precio):-
+    writeln('Lo siento, no pude entenderte. Asegurate de ingresar un numero...'),
+    sleep(1),
+    consultarPrecioMax(Precio).
+
   %% Regla que realizar preguntas al usuario relacionadas con las tematicas para ir filtrando intereses
   consultarTematicas([_|R], 4):- 
     write('Te gustaria elegir mas tematicas para agregar? (s|n) '),
@@ -105,14 +144,14 @@ seleccionar(2):-
     evaluarRespuestaSiNo(Respuesta, TematicaID, H).
 
   %% Regla de busqueda de juguetes segun respuestas principales
-  buscarJuguetes(_, _, TematicasInteres, _, [JugueteID | Resto]):-
-    retract(juguete(JugueteID, _, _, _, _, Tematicas, _)),
+  buscarJuguetes(EdadIngresada, GeneroIngresado, TematicasInteres, PrecioMax, [JugueteID | Resto]):-
+    retract(juguete(JugueteID, _, EdadMin, EdadMax, Genero, Tematicas, Precio)),
     tematicasCoinciden(Tematicas, TematicasInteres),
-    % evaluarGeneroJuguete(Genero, GeneroJuguete),
-    % EdadMin =< Edad,
-    % EdadMax >= Edad,
-    % Pmax >= Precio,
-    buscarJuguetes(_, _, TematicasInteres, _, Resto).
+    evaluarGeneroJuguete(GeneroIngresado, Genero),
+    EdadMin =< EdadIngresada,
+    EdadMax >= EdadIngresada,
+    PrecioMax >= Precio,
+    buscarJuguetes(EdadIngresada, GeneroIngresado, TematicasInteres, PrecioMax, Resto).
   buscarJuguetes(_, _, _, _, []).
 
   %% Regla que evalúa que el género del juguete sea el ingresado o sea 'n' de no aplica
