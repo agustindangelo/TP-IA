@@ -4,8 +4,9 @@
 abrir_db:-
   retractall(juguete(_,_,_,_,_,_,_)),
   consult('./Base/Datos.txt').
-  
+
 menu:-
+  cls,
   mostrarLogo,
   writeln('Hola, espero que andes muy bien. Soy JugueBot, tu asesor de compras.'),
   sleep(1),
@@ -17,7 +18,10 @@ menu:-
   writeln('Espero haber sido de ayuda :D !!'),
   sleep(1),
   menu.
-menu.
+menu:- 
+  writeln('Hasta luego, que tengas buen dia.'),
+  sleep(1),
+  cls.
 
 mostrarLogo:-
   writeln('       _                        ____        _   '),
@@ -149,6 +153,9 @@ seleccionar(2):-
 %% ------- FIN SECCION DE BUSQUEDA POR PALABRAS ---------------
 
 %% ------- SECCION DE REGLAS COMUNES ---------------
+  %% Limpieza de pantalla
+  cls :- write('\e[H\e[2J').
+  
   %% Regla que muestra un listado de los juguetes posibles para el usuario
   mostrarJuguetes([JugueteID | RestoIDs]):-
     abrir_db,
