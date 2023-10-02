@@ -48,7 +48,8 @@ seleccionar(1):-
   consultarGenero(Genero),
   consultarPrecioMax(PrecioMax),
   consultarTematicas(TematicasElegidas, 1),
-  buscarJuguetes(Edad, Genero, TematicasElegidas, PrecioMax, JugPosibles),
+  subtract(TematicasElegidas, [[]], TematicasFiltradas),
+  buscarJuguetes(Edad, Genero, TematicasFiltradas, PrecioMax, JugPosibles),
   mostrarJuguetes(JugPosibles).
 seleccionar(2):-
   write('Perfecto, necesitare que me digas una breve descripcion del juguete que buscas'), read(Descripcion),
@@ -58,11 +59,11 @@ seleccionar(2):-
   length(JugPosibles, CantidadCoincidencias),
   CantidadCoincidencias > 0,
   writeln('\nMmm... Se me ocurren estas opciones:\n'),
-  sleep(2),
+  sleep(1),
   mostrarJuguetes(JugPosibles).
 seleccionar(2):-
   sleep(1),
-  write('\nLo siento, no encontré el juguete que describiste. Podrias describirlo con otras palabras? (s|n)'),
+  write('\nLo siento, no encontre el juguete que describiste. Podrias describirlo con otras palabras? (s|n)'),
   read(Respuesta),
   Respuesta \= n,
   abrir_db,
@@ -201,7 +202,7 @@ seleccionar(2):-
   %% Regla que muestra un listado de los juguetes posibles para el usuario
   mostrarJuguetes([JugueteID | RestoIDs]):-
     abrir_db,
-    retract(juguete(JugueteID, Descripcion, _, _, _, Tematicas, Precio)),
+    juguete(JugueteID, Descripcion, _, _, _, Tematicas, Precio),
     write('\t'), write(JugueteID), write(' -> '), write(Descripcion), write('\t$'), write(Precio), write('\t - Tematicas: '), imprimirTematicasInline(Tematicas),
     writeln(''),
     mostrarJuguetes(RestoIDs).
@@ -233,13 +234,14 @@ seleccionar(2):-
     imprimirTematicas.
   imprimirTematicas.
 
-  imprimirTematicasInline([]).
+  %% Regla que muestra las tematicas al mostrar los juguetes
   imprimirTematicasInline([TematicaID|[]]):-
-    retract(tematica(TematicaID, Tematica, _)),
-    write(Tematica), write('.'),
-    imprimirTematicasInline([]).
+    tematica(TematicaID, Tematica, _),
+    write(Tematica), write('.').
+    % imprimirTematicasInline([]).
   imprimirTematicasInline([TematicaID|Resto]):-
-    retract(tematica(TematicaID, Tematica, _)),
+    tematica(TematicaID, Tematica, _),
     write(Tematica), write(', '),
     imprimirTematicasInline(Resto).
+  imprimirTematicasInline([]).
 %% ------- FIN SECCION DE REGLAS COMUNES ---------------

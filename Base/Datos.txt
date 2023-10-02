@@ -45,11 +45,11 @@ juguete(22, 'Gran Explorador', 3, 99, n, [9],  6431).
 juguete(23, 'Animales Salvajes imantados', 3, 99, n, [9],  9925).
 juguete(24, 'Set de Muniecos de Animales', 3, 99, n, [9],  4347).
 juguete(25, 'Juego Pop Up Didactico Animales', 3, 99, n, [9],  2799).
-juguete(26, 'Rompecabezas Animales', 5, 99, n, [9, 'juegos de mesa'],  13899).
+juguete(26, 'Rompecabezas Animales', 5, 99, n, [9, 13],  13899).
 juguete(27, 'Juego Matematico Animal', 5, 99, n, [9	],  2460).
 juguete(28, 'Juego de la Granja Con Accesorios y Animales', 5, 99, n, [9],  3000).
 juguete(29, 'Juego de la Memoria de Animales', 5, 99, n, [9],  3590).
-juguete(30, 'Juego de cartas didacticas', 5, 99, n, [9, 'juegos de mesa'],  5500).
+juguete(30, 'Juego de cartas didacticas', 5, 99, n, [9, 13],  5500).
 juguete(31, 'Juego de Encastre Madera de Animales ', 2, 99, n, [9],  12960).
 juguete(32, 'Figura de accion Marvel Iron Spiderman',6,99,m,[10],18000). 
 juguete(33, 'Figura de accion Marvel Hulk',6,99,m,[10],8000). 
