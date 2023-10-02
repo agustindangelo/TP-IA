@@ -48,8 +48,7 @@ seleccionar(1):-
   consultarGenero(Genero),
   consultarPrecioMax(PrecioMax),
   consultarTematicas(TematicasElegidas, 1),
-  subtract(TematicasElegidas, [[]], TematicasFiltradas),
-  buscarJuguetes(Edad, Genero, TematicasFiltradas, PrecioMax, JugPosibles),
+  buscarJuguetes(Edad, Genero, TematicasElegidas, PrecioMax, JugPosibles),
   mostrarJuguetes(JugPosibles).
 seleccionar(2):-
   write('Perfecto, necesitare que me digas una breve descripcion del juguete que buscas'), read(Descripcion),
