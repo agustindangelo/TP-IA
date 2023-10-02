@@ -31,7 +31,7 @@ mostrarLogo:-
   writeln(' | |__| | |_| | (_| | |_| |  __/ |_) | (_) | |_ '),
   writeln('  \\____/ \\__,_|\\__, |\\__,_|\\___|____/ \\___/ \\__|'),
   writeln('                __/ |                           '),
-  writeln('               |___/   Tu asistente de ventas   '),
+  writeln('               |___/   Tu asesor de juguetes   '),
   writeln('').
 mostrarOpciones:-
   writeln(' ---- En que puedo ayudarte hoy? --------------------'),
@@ -49,7 +49,6 @@ seleccionar(1):-
   consultarPrecioMax(PrecioMax),
   consultarTematicas(TematicasElegidas, 1),
   subtract(TematicasElegidas, [[]], TematicasFiltradas),
-  writeln(TematicasFiltradas),
   buscarJuguetes(Edad, Genero, TematicasFiltradas, PrecioMax, JugPosibles),
   mostrarJuguetes(JugPosibles).
 seleccionar(2):-
@@ -57,10 +56,16 @@ seleccionar(2):-
   split_string(Descripcion, ' ', ' ', DescripcionSeparada),
   limpiarConectores(DescripcionSeparada, PalabrasClave),
   buscarPorPalabra(PalabrasClave, JugPosibles),
-  writeln('Mmm... Se me ocurren estas opciones:'),
-  writeln(''),
+  length(JugPosibles, CantidadCoincidencias),
+  CantidadCoincidencias > 0,
+  writeln('\nMmm... Se me ocurren estas opciones:\n'),
+  sleep(2),
   mostrarJuguetes(JugPosibles).
-
+seleccionar(2):-
+  write('\nLo siento, no encontré el juguete que describiste. Podrias describirlo con otras palabras? (s|n)'),
+  read(Respuesta),
+  Respuesta \= n,
+  seleccionar(2).
 
 %% ------- SECCION DE BUSQUEDA PRINCIPAL --------------------
   %% Regla de consulta de edad validando que se ingrese un numero
@@ -175,10 +180,7 @@ seleccionar(2):-
   buscarPorPalabra(_, []).
 
   %% Regla que compara cada palabra clave con las de la descripcion
-  compararDescripcion([Palabra|[]], Descripcion):-
-    string_lower(Descripcion, DescripcionLower),
-    split_string(DescripcionLower, ' ', ' ', DescripcionLista),
-    pertenece(Palabra, DescripcionLista).
+  compararDescripcion([], _).
   compararDescripcion([Palabra|R], Descripcion):-
     string_lower(Descripcion, DescripcionLower),
     split_string(DescripcionLower, ' ', ' ', DescripcionLista),
@@ -199,12 +201,13 @@ seleccionar(2):-
   mostrarJuguetes([JugueteID | RestoIDs]):-
     abrir_db,
     retract(juguete(JugueteID, Descripcion, _, _, _, Tematicas, Precio)),
-    write('\t'), write(JugueteID), write(' -> '), write(Descripcion), write(' $'), write(Precio), write(' - Tematicas: '), write(Tematicas),
+    write('\t'), write(JugueteID), write(' -> '), write(Descripcion), write('\t$'), write(Precio), write('\t - Tematicas: '), imprimirTematicasInline(Tematicas),
     writeln(''),
     mostrarJuguetes(RestoIDs).
   mostrarJuguetes([]):-
     writeln(''),
-    writeln('--> Son todas las que tengo por ahora D:'),
+    sleep(1),
+    writeln('--> Son todas las que tengo disponible por ahora D:'),
     writeln(''),
     sleep(1),
     write('(Ingrese cualquier entrada para volver al menu)'), read(_).
@@ -228,4 +231,14 @@ seleccionar(2):-
     write('\t'), write(TematicaID), write('- '), write(TematicaUpper), writeln(''),
     imprimirTematicas.
   imprimirTematicas.
+
+  imprimirTematicasInline([]).
+  imprimirTematicasInline([TematicaID|[]]):-
+    retract(tematica(TematicaID, Tematica, _)),
+    write(Tematica), write('.'),
+    imprimirTematicasInline([]).
+  imprimirTematicasInline([TematicaID|Resto]):-
+    retract(tematica(TematicaID, Tematica, _)),
+    write(Tematica), write(', '),
+    imprimirTematicasInline(Resto).
 %% ------- FIN SECCION DE REGLAS COMUNES ---------------
