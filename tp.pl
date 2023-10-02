@@ -61,9 +61,11 @@ seleccionar(2):-
   sleep(2),
   mostrarJuguetes(JugPosibles).
 seleccionar(2):-
+  sleep(1),
   write('\nLo siento, no encontré el juguete que describiste. Podrias describirlo con otras palabras? (s|n)'),
   read(Respuesta),
   Respuesta \= n,
+  abrir_db,
   seleccionar(2).
 
 %% ------- SECCION DE BUSQUEDA PRINCIPAL --------------------
